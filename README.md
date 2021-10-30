@@ -26,5 +26,6 @@ The project is using Jest framework for testing. To run the test:
 
 Node Version:
 
-The project is built with v14.17.0, if you get error when starting the console app, 
-please try to update the Node.js version first.
+The project is built with v14.17.0, if you get an error when starting the console app, 
+please try to download the newest Node version from https://nodejs.org/en/download/ 
+and update it first.
