@@ -1,0 +1,16 @@
+{
+    "name": "technicaltest-frontend-master",
+    "version": "1.0.0",
+    "description": "XeroTechnicalTest consists of a Node.js console application.",
+    "main": "index.js",
+    "dependencies": {
+        "jest": "^27.3.1"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "start": "node src/index.js",
+        "test": "jest"
+    },
+    "author": "",
+    "license": "ISC"
+}

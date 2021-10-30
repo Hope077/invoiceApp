@@ -25,62 +25,64 @@ const InvoiceLine = require('./invoiceLine.js');
 function main() {
     console.log("Welcome to Xero Tech Test!");
 
-    createInvoiceWithOneIem();
+    createInvoiceWithOneItem();
     createInvoiceWithMultipleItemsAndQuantities();
     removeItem();
     mergeInvoices();
     cloneInvoice();
-    invoiceToString();
+    invoiceToString();    
 }
 
 function createInvoiceWithOneItem() {
+    console.log("Creating a invoice with one item...");
     const invoice = new Invoice();
-    invoice.addInvoiceLine(new InvoiceLine(1, 6.99, 1, "Apple"));
-    console.log(invoice.lineItems);
+    invoice.addInvoiceLine(new InvoiceLine(1, 6.99, 1, "Apple"));     
+    invoice.printPrettyInvoice();
 }
 
-function createInvoiceWithMultipleItemsAndQuantities () {
+function createInvoiceWithMultipleItemsAndQuantities() {
+    console.log("Creating a invoice with multiple items...");
     const invoice = new Invoice();
     invoice.addInvoiceLine(new InvoiceLine(1, 10.21, 4, "Banana"));
-    invoice.addInvoiceLine(new InvoiceLine(2, 5.21, 1, "Orange" ));
+    invoice.addInvoiceLine(new InvoiceLine(2, 5.21, 1, "Orange"));
     invoice.addInvoiceLine(new InvoiceLine(3, 6.21, 5, "Pineapple"));
-    console.log(invoice.getTotal());
+    invoice.printPrettyInvoice();
 }
 
 function removeItem() {
     const invoice = new Invoice();
-
     invoice.addInvoiceLine(new InvoiceLine(1, 10.21, 1, "Orange"));
     invoice.addInvoiceLine(new InvoiceLine(2, 10.99, 5, "Banana"));
-
+    console.log("Old invoice");
+    invoice.printPrettyInvoice();
+    console.log("Removing item from invoice...");
     invoice.removeInvoiceLine(1);
-
-    console.log(invoice.getTotal());
+    console.log("New invoice");
+    invoice.printPrettyInvoice();
 }
 
 function mergeInvoices() {
+    console.log("Merging two invoices...");
     const invoice1 = new Invoice();
-
     invoice1.addInvoiceLine(new InvoiceLine(1, 10.21, 1, "Blueberries"));
-
     const invoice2 = new Invoice();
-
     invoice2.addInvoiceLine(new InvoiceLine(2, 5.29, 4, "Orange"));
     invoice2.addInvoiceLine(new InvoiceLine(3, 9.99, 1, "Banana"));
-
     invoice1.mergeInvoices(invoice2);
-
-    console.log(invoice1.getTotal());
+    console.log("Merged result: ");
+    invoice1.printPrettyInvoice();
 }
 
 function cloneInvoice() {
+    console.log("Cloning invoice...");
     const invoice = new Invoice();
 
     invoice.addInvoiceLine(new InvoiceLine(1, 0.99, 5, "Onion"));
     invoice.addInvoiceLine(new InvoiceLine(2, 10.49, 2, "Watermelon"));
 
-    const clonedInvoice = invoice.Clone();
-    console.log(clonedInvoice.GetTotal());
+    const clonedInvoice = invoice.cloneInvoice();
+    console.log("Clone result: ");
+    clonedInvoice.printPrettyInvoice();
 }
 
 function invoiceToString() {
@@ -88,12 +90,11 @@ function invoiceToString() {
         new Date(),
         "1000",
         [
-            new InvoiceLine(1, 1.99, 20, "Peer")
+            new InvoiceLine(1, 1.99, 20, "Pear")
         ]
     );
 
-    console.log(invoice);
+    console.log("Converting a invoice object to string...\n", JSON.stringify(invoice));
 }
-
 
 main();
